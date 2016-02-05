@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/tayboonl/PACKT_OpenCL_Book/src/Ch3/vectorization/vectorization.c
+stdio.h
+-
+stdlib.h
+-
+sys/types.h
+-
+alloca.h
+-
+vectorization_config.h
+/Users/tayboonl/PACKT_OpenCL_Book/src/Ch3/vectorization/vectorization_config.h
+OpenCL/cl.h
+-
+CL/cl.h
+-
+
+/Users/tayboonl/PACKT_OpenCL_Book/src/Ch3/vectorization/vectorization_config.h
+

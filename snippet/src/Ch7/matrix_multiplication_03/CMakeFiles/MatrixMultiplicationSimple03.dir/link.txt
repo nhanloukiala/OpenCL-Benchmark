@@ -1,0 +1,1 @@
+/usr/bin/gcc  -std=c99 -Wall -DUNIX -g -DDEBUG   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/MatrixMultiplicationSimple03.dir/MatrixMultiplication.c.o  -o MatrixMultiplicationSimple03  -framework OpenCL -lm 

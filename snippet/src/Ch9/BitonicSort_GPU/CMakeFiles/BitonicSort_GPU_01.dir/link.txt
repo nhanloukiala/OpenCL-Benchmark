@@ -1,0 +1,1 @@
+/usr/bin/gcc  -std=c99 -Wall -DUNIX -g -DDEBUG   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/BitonicSort_GPU_01.dir/BitonicSort.c.o  -o BitonicSort_GPU_01  -framework OpenCL -lm 

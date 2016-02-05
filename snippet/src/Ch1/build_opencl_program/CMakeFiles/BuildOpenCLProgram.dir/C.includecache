@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/tayboonl/PACKT_OpenCL_Book/src/Ch1/build_opencl_program/build_opencl_program.c
+stdio.h
+-
+stdlib.h
+-
+sys/types.h
+-
+alloca.h
+-
+OpenCL/cl.h
+-
+CL/cl.h
+-
+

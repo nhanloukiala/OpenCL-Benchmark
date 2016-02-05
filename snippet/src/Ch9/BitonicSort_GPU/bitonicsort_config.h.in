@@ -1,0 +1,4 @@
+#cmakedefine DEBUG
+#cmakedefine DEBUG_VERBOSE
+#cmakedefine USE_SHARED_MEM
+#cmakedefine USE_SHARED_MEM_2

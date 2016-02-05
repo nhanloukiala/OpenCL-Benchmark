@@ -1,0 +1,3 @@
+#cmakedefine DEBUG
+#cmakedefine VERBOSE_DEBUG
+

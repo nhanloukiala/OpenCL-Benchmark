@@ -1,0 +1,1 @@
+/usr/bin/gcc  -std=c99 -Wall -DUNIX -g -DDEBUG   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/MatVecMult.dir/matvecmult.c.o  -o MatVecMult  -framework OpenCL 

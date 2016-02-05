@@ -1,0 +1,1 @@
+/usr/bin/gcc  -std=c99 -Wall -DUNIX -g -DDEBUG  -msse -mfpmath=sse -D__SSE__ -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/Vectorization.dir/vectorization.c.o  -o Vectorization  -framework OpenCL 

@@ -1,0 +1,1 @@
+/usr/bin/gcc  -std=c99 -Wall -DUNIX  -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/SubBufferQuery.dir/subbuffer_query.c.o  -o SubBufferQuery  -framework OpenCL 

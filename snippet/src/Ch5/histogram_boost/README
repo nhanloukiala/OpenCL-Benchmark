@@ -1,0 +1,37 @@
+Background Information
+========================
+This histogram program is taken from the example code in the C++ Boost Libraries hosted at www.boost.org
+The program will take an JEPG file conveniently named "test.jpeg" and proceed to dump the information
+in the file "out-histogram.txt".
+
+RUN IT
+==========
+To run it, you need to have both boost + jpeg libs installed as described below. Once that's done, you 
+will need to build the program by executing 'make' which will execute the Makefile
+
+./histogram
+
+A file 'out-histogram.txt' will be outputted on the current directory. Depending on your system's configuration,
+you may wish to create a symbolic/hard link from <jpeglib dir>/lib/libjpeg to /usr/local/lib/libjpeg.
+
+Extras
+==========
+You need to download version "1.53.0" of the C++ Boost Libraries from www.boost.org for this example to work
+You also need to download version "9" of the C++ JPEG Libraries from http://ijg.org/ too.
+
+Recommendations
+================
+Its highly recommended to place the boost installation and JPEG libs in your home directory (because they will
+install to /usr/local/ by default i.e. system wide). Please read the "Getting Started" page for Boost at 
+http://www.boost.org/doc/libs/1_53_0/more/getting_started/unix-variants.html to see how this can be done; for JPEG libs
+you can use 
+
+./configure --prefix=<destination directory>
+
+prior to building/installing it.
+
+Disclaimer
+===========
+The author is not held responsible for any damage to the computer
+when this program is run. Please approach the original authors
+
