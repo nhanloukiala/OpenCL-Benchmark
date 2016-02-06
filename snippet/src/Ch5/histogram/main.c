@@ -62,6 +62,7 @@ decipherEvent(cl_event* event) {
     return 0;
 }
 int main(int argc, char** argv) {
+    printf("here 1");
 
     int height; int width;       // dimensions of the data grid
     
