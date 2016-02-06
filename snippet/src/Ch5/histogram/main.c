@@ -10,7 +10,7 @@
 #ifdef  __APPLE__
 #include <OpenCL/opencl.h>
 #else
-#define CL_USE_DEPRECATED_OPENCL_1_2_APIS
+#define CL_USE_DEPRECATED_OPENCL_1_0_APIS
 #include <CL/cl.h>
 #endif
 
@@ -65,10 +65,10 @@ int main(int argc, char** argv) {
     printf("here 1");
 
     int height; int width;       // dimensions of the data grid
-    
+
     height = atoi(argv[1]);
     width  = atoi(argv[2]);
-    
+
     /* OpenCL 1.1 data structures */
     cl_platform_id* platforms;
     cl_program program;
@@ -81,14 +81,14 @@ int main(int argc, char** argv) {
     cl_int* intermediateBins = NULL;
     cl_command_queue queue;
     cl_mem inputDataBuffer;
-    cl_mem intermediateBinBuffer; 
+    cl_mem intermediateBinBuffer;
 
     /* OpenCL 1.1 scalar data types */
-    cl_int numOfPlatforms;
+    cl_uint numOfPlatforms;
     cl_int  error;
     size_t globalThreads;
     size_t localThreads;
-    
+
     /* Perform initialization of data structures & data */
     {
         int w = width;
@@ -117,7 +117,7 @@ int main(int argc, char** argv) {
         width = w;
         height = h;
     }
- 
+
     /*
      Get the number of platforms
      Remember that for each vendor's SDK installed on the computer,
@@ -128,10 +128,10 @@ int main(int argc, char** argv) {
         perror("Unable to find any OpenCL platforms");
         exit(1);
     }
-    
+
     platforms = (cl_platform_id*) alloca(sizeof(cl_platform_id) * numOfPlatforms);
     printf("Number of OpenCL platforms found: %d\n", numOfPlatforms);
-    
+
     error = clGetPlatformIDs(numOfPlatforms, platforms, NULL);
     if(error != CL_SUCCESS) {
         perror("Unable to find any OpenCL platforms");
@@ -153,14 +153,14 @@ int main(int argc, char** argv) {
             perror("Can't create a valid OpenCL context");
             exit(1);
         }
-        
+
         /* Load the two source files into temporary datastores */
         const char *file_names[] = {"histogram.cl"};
         const int NUMBER_OF_FILES = 1;
         char* buffer[NUMBER_OF_FILES];
         size_t sizes[NUMBER_OF_FILES];
         loadProgramSource(file_names, NUMBER_OF_FILES, buffer, sizes);
-        
+
         /* Create the OpenCL program object */
         program = clCreateProgramWithSource(context, NUMBER_OF_FILES, (const char**)buffer, sizes, &error);
 	    if(error != CL_SUCCESS) {
@@ -184,7 +184,7 @@ int main(int argc, char** argv) {
             free(program_log);
             exit(1);
 	    }
-        
+
         printf("width=%d, height=%d, queue...global=%zd local=%zd subhistograms=%d.\n", width,height, globalThreads,
                                                                     localThreads,
                                                                     subHistogramCount);
@@ -210,8 +210,8 @@ int main(int argc, char** argv) {
         // the importance of uchar being that its unsigned char i.e. value range[0x00..0xff]
         clSetKernelArg(kernel, 1, BIN_SIZE * GROUP_SIZE * sizeof(cl_uchar), NULL); // bounded by LOCAL MEM SIZE in GPU
         clSetKernelArg(kernel, 2, sizeof(cl_mem), (void*)&intermediateBinBuffer);
-     
-		cl_event exeEvt; 
+
+		cl_event exeEvt;
 		error = clEnqueueNDRangeKernel(queue,
 		                               kernel,
 		                               1,
@@ -220,9 +220,9 @@ int main(int argc, char** argv) {
 		if(error != CL_SUCCESS) {
 			printf("Kernel execution failure!\n");
 			exit(-22);
-		}	
+		}
         clReleaseEvent(exeEvt);
- 
+
         clEnqueueReadBuffer(queue,
                             intermediateBinBuffer,
                             CL_TRUE,
@@ -234,7 +234,7 @@ int main(int argc, char** argv) {
                             NULL);
 
         memset(deviceBin,0, BIN_SIZE * sizeof(cl_int));
-       
+
         for(int i = 0; i < subHistogramCount; ++i)
             for( int j = 0; j < BIN_SIZE; ++j) {
 		        printf("see(%d,%d)..%zd ",i,j, intermediateBins[i*BIN_SIZE+j]);
@@ -244,7 +244,7 @@ int main(int argc, char** argv) {
 
         /* verify results */
         calculateHostBin(width, height, hostBin, data);
-        
+
         int result = 1;
         for( int i = 0; i < BIN_SIZE; ++i)
             printf("comparing %d %d == %d?\n",i, hostBin[i], deviceBin[i]);
@@ -254,11 +254,13 @@ int main(int argc, char** argv) {
             }
         if(result) {
             fprintf(stdout, "Passed!\n");
+            printf("Passed");
         } else {
             fprintf(stdout, "Failed\n");
+            printf("Failed");
         }
-        
-        
+
+
         /* Clean up */
         //for(cl_int i = 0; i < numOfKernels; i++) { clReleaseKernel(kernels[i]); }
         for(i=0; i< NUMBER_OF_FILES; i++) { free(buffer[i]); }
@@ -267,10 +269,9 @@ int main(int argc, char** argv) {
         clReleaseMemObject(inputDataBuffer);
         clReleaseMemObject(intermediateBinBuffer);
     }
-    
+
     free(data);
     free(hostBin);
     free(intermediateBins);
     free(deviceBin);
-
 }
