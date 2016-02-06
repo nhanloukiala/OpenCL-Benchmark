@@ -15,7 +15,6 @@ void histogram256(__global const uint4* data,
                   __local uchar* sharedArray,
                   __global uint* binResult)
 {
-    printf("this is something....");
     size_t localId = get_local_id(0);
     size_t globalId = get_global_id(0);
     size_t groupId = get_group_id(0);
@@ -91,7 +90,6 @@ void histogram256_1threadPerBlock(__global const unsigned int* data,
                                   __local uint* sharedArray,
                                   __global uint* binResult)
 {
-    printf("this is something");
     size_t localId = get_local_id(0);
     size_t globalId = get_global_id(0);
     size_t groupId = get_group_id(0);
