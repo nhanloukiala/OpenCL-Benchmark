@@ -89,33 +89,33 @@ int main(int argc, char** argv) {
     size_t localThreads;
     
     /* Perform initialization of data structures & data */
-    {
-        int w = width;
-        int h = height;
-        
-        // ensure a minimum size of 32-KB is present to work this.
-        w = (w / BIN_SIZE ? w / BIN_SIZE: 1) * BIN_SIZE;
-        h = (h / GROUP_SIZE ? h / GROUP_SIZE : 1) * GROUP_SIZE;
-        
-        subHistogramCount = (w * h) / (GROUP_SIZE * BIN_SIZE);
-        data = (cl_uint*) malloc(w * h * sizeof(cl_uint));
-        
-        for(int i = 0; i < w * h; i++) data[i] = rand() % BIN_SIZE;
-        
-        hostBin = (cl_uint*) malloc(BIN_SIZE * sizeof(cl_uint));
-        memset(hostBin, 0, BIN_SIZE * sizeof(cl_uint));
-        
-        intermediateBins = (cl_int*) malloc(BIN_SIZE * (subHistogramCount) * sizeof(cl_int));
-        memset(intermediateBins, 0, BIN_SIZE * (subHistogramCount) * sizeof(cl_int));
-        
-        deviceBin = (cl_int*) malloc(BIN_SIZE * sizeof(cl_int));
-        memset(deviceBin, 0, BIN_SIZE * sizeof(cl_int));
-
-        globalThreads = (w * h)/ BIN_SIZE;
-        localThreads  = GROUP_SIZE;
-        width = w;
-        height = h;
-    }
+//    {
+//        int w = width;
+//        int h = height;
+//
+//        // ensure a minimum size of 32-KB is present to work this.
+//        w = (w / BIN_SIZE ? w / BIN_SIZE: 1) * BIN_SIZE;
+//        h = (h / GROUP_SIZE ? h / GROUP_SIZE : 1) * GROUP_SIZE;
+//
+//        subHistogramCount = (w * h) / (GROUP_SIZE * BIN_SIZE);
+//        data = (cl_uint*) malloc(w * h * sizeof(cl_uint));
+//
+//        for(int i = 0; i < w * h; i++) data[i] = rand() % BIN_SIZE;
+//
+//        hostBin = (cl_uint*) malloc(BIN_SIZE * sizeof(cl_uint));
+//        memset(hostBin, 0, BIN_SIZE * sizeof(cl_uint));
+//
+//        intermediateBins = (cl_int*) malloc(BIN_SIZE * (subHistogramCount) * sizeof(cl_int));
+//        memset(intermediateBins, 0, BIN_SIZE * (subHistogramCount) * sizeof(cl_int));
+//
+//        deviceBin = (cl_int*) malloc(BIN_SIZE * sizeof(cl_int));
+//        memset(deviceBin, 0, BIN_SIZE * sizeof(cl_int));
+//
+//        globalThreads = (w * h)/ BIN_SIZE;
+//        localThreads  = GROUP_SIZE;
+//        width = w;
+//        height = h;
+//    }
  
     /*
      Get the number of platforms
@@ -188,8 +188,8 @@ int main(int argc, char** argv) {
                                                                     localThreads,
                                                                     subHistogramCount);
 
-        queue = clCreateCommandQueueWithProperties(context, device, 0, &error);
-//        queue = clCreateCommandQueue(context, device, 0, &error);
+//        queue = clCreateCommandQueueWithProperties(context, device, 0, &error);
+        queue = clCreateCommandQueue(context, device, 0, &error);
 
         cl_kernel kernel = clCreateKernel(program, "histogram256", &error);
 
