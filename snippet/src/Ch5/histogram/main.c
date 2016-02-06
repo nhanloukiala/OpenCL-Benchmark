@@ -10,7 +10,6 @@
 #ifdef  __APPLE__
 #include <OpenCL/opencl.h>
 #else
-#define CL_USE_DEPRECATED_OPENCL_1_0_APIS
 #include <CL/cl.h>
 #endif
 
@@ -172,7 +171,7 @@ int main(int argc, char** argv) {
         const char options[] = "";
         size_t log_size;
 
-        error = clBuildProgram(program, 1, &device, options, NULL, NULL);
+        error = clCompileProgram(program, 1, &device, options, NULL, NULL, NULL, NULL, NULL);
 	    if(error != CL_SUCCESS) {
             // If there's an error whilst building the program, dump the log
             clGetProgramBuildInfo(program, device, CL_PROGRAM_BUILD_LOG, 0, NULL, &log_size);
