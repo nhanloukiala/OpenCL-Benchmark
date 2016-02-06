@@ -84,6 +84,9 @@ int main(int argc, char** argv) {
     cl_int  error;
     size_t globalThreads;
     size_t localThreads;
+
+    platforms = (cl_platform_id*) alloca(sizeof(cl_platform_id) * numOfPlatforms);
+    printf("Number of OpenCL platforms found: %d\n", numOfPlatforms);
     
     /* Perform initialization of data structures & data */
     {

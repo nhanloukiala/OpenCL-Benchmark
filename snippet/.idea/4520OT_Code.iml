@@ -21,10 +21,10 @@
       <sourceFolder url="file://$MODULE_DIR$/src/Ch5/histogram_c/histogram.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Ch5/histogram/histogram_config.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Ch5/histogram/main.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Ch4/simple_trigonometry/simple_trigo_config.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Ch4/simple_trigonometry/simple_trigo.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Ch4/simple_fma_vs_mad/fma_mad_cmp.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Ch4/simple_fma_vs_mad/fma_mad_cmp_config.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/Ch4/simple_vector_load/vector_load_config.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/Ch4/simple_vector_load/vector_load.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Ch4/simple_vector_store/vector_store.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Ch4/simple_vector_store/vector_store_config.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Ch4/par_min/par_min_config.h" isTestSource="false" />
@@ -37,29 +37,29 @@
       <sourceFolder url="file://$MODULE_DIR$/src/Ch4/simple_select_filter/select_filter_config.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Ch4/simple_rounding/simple_rounding_config.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Ch4/simple_rounding/simple_rounding.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/Ch4/simple_trigonometry/simple_trigo_config.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/Ch4/simple_trigonometry/simple_trigo.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/Ch3/vectorization/vectorization.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/Ch3/vectorization/vectorization_config.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Ch4/simple_vector_load/vector_load_config.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Ch4/simple_vector_load/vector_load.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Ch3/OpenCLVectorizationOSX/multiplication/main.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/Ch3/byte_ordering/show_bytes.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Ch3/double_support/double_support.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Ch3/double_support/double_config.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Ch3/byte_ordering/show_bytes.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Ch3/vectorization/vectorization.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Ch3/vectorization/vectorization_config.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Ch2/copy_buffer/copy_buffer.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Ch2/copy_buffer/user_buffer.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Ch2/sub_buffer_query/subbuffer_query.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Ch2/sub_buffer_query/subbuffer_query.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/Ch2/simple_2D_readwrite/simple_2D_readwrite.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Ch2/buffer_query/buffer_query.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Ch2/buffer_query/buffer_query.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Ch2/work_partitioning/work_partition.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/Ch2/copy_buffer/copy_buffer.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/Ch2/copy_buffer/user_buffer.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Ch2/user_buffer_alignment/user_buffer.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Ch2/user_buffer_alignment/user_buffer_align.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Ch2/simple_2D_readwrite/simple_2D_readwrite.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Ch2/user_buffer/user_buffer.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Ch2/user_buffer/user_buffer.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Ch2/sub_buffers/user_buffer.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Ch2/sub_buffers/sub_buffer.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Ch2/events/events.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/Ch2/user_buffer_alignment/user_buffer.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/Ch2/user_buffer_alignment/user_buffer_align.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Ch1/context_query/context_details.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Ch1/platform_details/platform_details.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Ch1/kernel_queue/kernel_queue.c" isTestSource="false" />
@@ -97,14 +97,14 @@
       <sourceFolder url="file://$MODULE_DIR$/vexcl/reduce.hpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vexcl/random/philox.hpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vexcl/random/threefry.hpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/vexcl/profiler.hpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vexcl/vector.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/vexcl/types.hpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vexcl/spmat.hpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vexcl/stencil.hpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vexcl/generator.hpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vexcl/random.hpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vexcl/gather.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/vexcl/profiler.hpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/vexcl/types.hpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vexcl/operations.hpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vexcl/src/Ch1/context_query/context_details.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vexcl/src/Ch1/kernel_query/kernel_query.c" isTestSource="false" />
