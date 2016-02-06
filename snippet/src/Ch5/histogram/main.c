@@ -191,7 +191,7 @@ int main(int argc, char** argv) {
 //        queue = clCreateCommandQueueWithProperties(context, device, 0, &error);
         queue = clCreateCommandQueue(context, device, 0, &error);
 
-        cl_kernel kernel = clCreateKernel(program, "histogram256", &error);
+//        cl_kernel kernel = clCreateKernel(program, "histogram256", &error);
 
         inputDataBuffer = clCreateBuffer(context,
                                  CL_MEM_READ_ONLY|CL_MEM_COPY_HOST_PTR,
