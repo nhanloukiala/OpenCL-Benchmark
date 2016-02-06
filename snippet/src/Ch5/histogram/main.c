@@ -187,8 +187,9 @@ int main(int argc, char** argv) {
         printf("width=%d, height=%d, queue...global=%zd local=%zd subhistograms=%d.\n", width,height, globalThreads,
                                                                     localThreads,
                                                                     subHistogramCount);
-        
-        queue = clCreateCommandQueue(context, device, 0, &error);
+
+        queue = clCreateCommandQueueWithProperties(context, device, 0, &error);
+//        queue = clCreateCommandQueue(context, device, 0, &error);
 
         cl_kernel kernel = clCreateKernel(program, "histogram256", &error);
 
