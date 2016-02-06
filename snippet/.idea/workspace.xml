@@ -41,15 +41,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.c" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Ch5/histogram/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.17398946">
-              <caret line="62" column="26" selection-start-line="62" selection-start-column="26" selection-end-line="62" selection-end-column="26" />
+            <state vertical-scroll-proportion="-15.0">
+              <caret line="78" column="36" selection-start-line="78" selection-start-column="36" selection-end-line="78" selection-end-column="36" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
                 <element signature="e#446#591#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="histogram.cl" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Ch5/histogram/histogram.cl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.21979865">
+              <caret line="91" column="22" selection-start-line="91" selection-start-column="22" selection-end-line="91" selection-end-column="22" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -61,6 +71,7 @@
       <list>
         <option value="$PROJECT_DIR$/src/Ch1/build_opencl_program/build_opencl_program.c" />
         <option value="$PROJECT_DIR$/src/Ch5/histogram/main.c" />
+        <option value="$PROJECT_DIR$/src/Ch5/histogram/histogram.cl" />
       </list>
     </option>
   </component>
@@ -430,12 +441,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Ch5/histogram/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17398946">
-          <caret line="62" column="26" selection-start-line="62" selection-start-column="26" selection-end-line="62" selection-end-column="26" />
+        <state vertical-scroll-proportion="-15.0">
+          <caret line="78" column="36" selection-start-line="78" selection-start-column="36" selection-end-line="78" selection-end-column="36" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
             <element signature="e#446#591#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ch5/histogram/histogram.cl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21979865">
+          <caret line="91" column="22" selection-start-line="91" selection-start-column="22" selection-end-line="91" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
