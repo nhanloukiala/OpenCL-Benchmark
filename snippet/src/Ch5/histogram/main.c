@@ -171,7 +171,7 @@ int main(int argc, char** argv) {
         const char options[] = "";
         size_t log_size;
 
-        error = clCompileProgram(program, 1, &device, options, NULL, NULL, NULL, NULL, NULL);
+        error = clBuildProgram(program, 1, &device, options, NULL, NULL);
 	    if(error != CL_SUCCESS) {
             // If there's an error whilst building the program, dump the log
             clGetProgramBuildInfo(program, device, CL_PROGRAM_BUILD_LOG, 0, NULL, &log_size);
