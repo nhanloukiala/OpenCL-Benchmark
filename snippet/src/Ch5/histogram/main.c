@@ -60,7 +60,6 @@ decipherEvent(cl_event* event) {
     return 0;
 }
 int main(int argc, char** argv) {
-    printf("Something 1");
 
     int height; int width;       // dimensions of the data grid
     
@@ -86,9 +85,6 @@ int main(int argc, char** argv) {
     cl_int  error;
     size_t globalThreads;
     size_t localThreads;
-
-    platforms = (cl_platform_id*) alloca(sizeof(cl_platform_id) * numOfPlatforms);
-    printf("Number of OpenCL platforms found: %d\n", numOfPlatforms);
     
     /* Perform initialization of data structures & data */
     {
