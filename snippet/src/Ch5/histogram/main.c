@@ -168,7 +168,7 @@ int main(int argc, char** argv) {
 	    }
         /* Build OpenCL program object and dump the error message, if any */
         char *program_log;
-        const char options[] = "";
+        const char options[] = "-cl-std=CL1.2";
         size_t log_size;
 
         error = clBuildProgram(program, 1, &device, options, NULL, NULL);
