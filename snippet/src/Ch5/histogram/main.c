@@ -61,8 +61,6 @@ decipherEvent(cl_event* event) {
     return 0;
 }
 int main(int argc, char** argv) {
-    printf("here 1");
-
     int height; int width;       // dimensions of the data grid
 
     height = atoi(argv[1]);
@@ -172,6 +170,7 @@ int main(int argc, char** argv) {
         size_t log_size;
 
         error = clBuildProgram(program, 1, &device, options, NULL, NULL);
+        printf("here1");
 	    if(error != CL_SUCCESS) {
             // If there's an error whilst building the program, dump the log
             clGetProgramBuildInfo(program, device, CL_PROGRAM_BUILD_LOG, 0, NULL, &log_size);
