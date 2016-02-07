@@ -15,12 +15,11 @@ void histogram256(__global const uint4* data,
                   __local uchar* sharedArray,
                   __global uint* binResult)
 {
+    printf("here 1");
     size_t localId = get_local_id(0);
     size_t globalId = get_global_id(0);
     size_t groupId = get_group_id(0);
     size_t groupSize = get_local_size(0);
-
-
  
 //     This is a form of the optimized version of the same program that 
 //     makes use of the memory banks in the device (works only for GPUs)
