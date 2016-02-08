@@ -10,7 +10,6 @@
 #ifdef  __APPLE__
 #include <OpenCL/opencl.h>
 #else
-#define CL_USE_DEPRECATED_OPENCL_1_2_APIS(1_2)
 #include <CL/cl.h>
 #endif
 
