@@ -186,8 +186,8 @@ int main(int argc, char** argv) {
                                                                     localThreads,
                                                                     subHistogramCount);
 
-        queue = clCreateCommandQueueWithProperties(context, device, 0, &error);
-//        queue = clCreateCommandQueue(context, device, 0, &error);
+//        queue = clCreateCommandQueueWithProperties(context, device, 0, &error);
+        queue = clCreateCommandQueue(context, device, 0, &error);
 
         cl_kernel kernel = clCreateKernel(program, "histogram256", &error);
 
