@@ -84,13 +84,12 @@ void histogram256(__global const uint4* data,
         for(int i = 0; i < BIN_SIZE; ++i) {
             uint result = 0;
             for(int j = 0; j < 128; ++j)  {
-                result += sharedArray[i * 128 + j];
+//                result += sharedArray[i * 128 + j];
+                result+=1;
             }
             binResult[groupId * BIN_SIZE + i] = result;
         }
     }
-
-
 
 }
 
