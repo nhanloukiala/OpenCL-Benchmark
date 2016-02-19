@@ -80,6 +80,8 @@ void histogram256(__global const uint4* data,
             binResult[groupId * BIN_SIZE + i] = result;
         }
     }
+
+    printf("This is in kernel");
 }
 
 // only 1 thread executing a 256 block
@@ -93,7 +95,6 @@ void histogram256_1threadPerBlock(__global const unsigned int* data,
     size_t groupId = get_group_id(0);
     size_t groupSize = get_local_size(0);
     size_t numOfGroups = get_num_groups(0);
-
 	__local uint * input = (__local uint*)sharedArray; // assume its 256 * sizeof(cl_uint) and range from [0..255]
 
     for(int i = 0; i < BIN_SIZE; ++i)
