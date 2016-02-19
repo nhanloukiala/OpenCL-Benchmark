@@ -188,7 +188,7 @@ int main(int argc, char** argv) {
 //        queue = clCreateCommandQueueWithProperties(context, device, 0, &error);
         queue = clCreateCommandQueue(context, device, 0, &error);
 
-        cl_kernel kernel = clCreateKernel(program, "histogram256", &error);
+        cl_kernel kernel = clCreateKernel(program, "histogram256_1threadPerBlock", &error);
 
 
 //        printf("START DEBUGING DATA :  \n");

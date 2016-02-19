@@ -80,46 +80,36 @@ void histogram256(__global const uint4* data,
             }
             binResult[groupId * BIN_SIZE + i] = result;
         }
-    } else {
-        for(int i = 0; i < BIN_SIZE; ++i) {
-            uint result = 0;
-            for(int j = 0; j < 128; ++j)  {
-//                result += sharedArray[i * 128 + j];
-                result+=1;
-            }
-            binResult[groupId * BIN_SIZE + i] = result;
-        }
     }
-
 }
 
 // only 1 thread executing a 256 block
-//__kernel
-//void histogram256_1threadPerBlock(__global const unsigned int* data,
-//                                  __local uint* sharedArray,
-//                                  __global uint* binResult)
-//{
-//    size_t localId = get_local_id(0);
-//    size_t globalId = get_global_id(0);
-//    size_t groupId = get_group_id(0);
-//    size_t groupSize = get_local_size(0);
-//    size_t numOfGroups = get_num_groups(0);
-//	__local uint * input = (__local uint*)sharedArray; // assume its 256 * sizeof(cl_uint) and range from [0..255]
-//
-//    for(int i = 0; i < BIN_SIZE; ++i)
-//        input[i] = 0;
-//
-//    barrier(CLK_LOCAL_MEM_FENCE);
-//
-//    for(int i = 0; i < BIN_SIZE; ++i)
-//        input[ data[i] ]++;
-//
-//    barrier(CLK_LOCAL_MEM_FENCE);
-//
-//    if (localId == 0)
-//    for(int i = 0; i < BIN_SIZE; ++i) {
-//        uint t = input[i];
-//        atomic_add(binResult + i, t);
-//    }
-//}
+__kernel
+void histogram256_1threadPerBlock(__global const unsigned int* data,
+                                  __local uint* sharedArray,
+                                  __global uint* binResult)
+{
+    size_t localId = get_local_id(0);
+    size_t globalId = get_global_id(0);
+    size_t groupId = get_group_id(0);
+    size_t groupSize = get_local_size(0);
+    size_t numOfGroups = get_num_groups(0);
+	__local uint * input = (__local uint*)sharedArray; // assume its 256 * sizeof(cl_uint) and range from [0..255]
+
+    for(int i = 0; i < BIN_SIZE; ++i)
+        input[i] = 0;
+
+    barrier(CLK_LOCAL_MEM_FENCE);
+
+    for(int i = 0; i < BIN_SIZE; ++i)
+        input[ data[i] ]++;
+
+    barrier(CLK_LOCAL_MEM_FENCE);
+
+    if (localId == 0)
+    for(int i = 0; i < BIN_SIZE; ++i) {
+        uint t = input[i];
+        atomic_add(binResult + i, t);
+    }
+}
 
