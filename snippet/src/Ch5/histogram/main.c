@@ -191,10 +191,10 @@ int main(int argc, char** argv) {
         cl_kernel kernel = clCreateKernel(program, "histogram256", &error);
 
 
-        printf("START DEBUGING DATA :  \n");
-        for(int i = 0 ; i < width * height; i++)
-            printf("%d \n", data[i]);
-        printf("STOP DEBUGGING DATA : \n");
+//        printf("START DEBUGING DATA :  \n");
+//        for(int i = 0 ; i < width * height; i++)
+//            printf("%d \n", data[i]);
+//        printf("STOP DEBUGGING DATA : \n");
 
         inputDataBuffer = clCreateBuffer(context,
                                  CL_MEM_READ_ONLY|CL_MEM_COPY_HOST_PTR,
