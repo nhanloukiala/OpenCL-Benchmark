@@ -224,7 +224,7 @@ int main(int argc, char** argv) {
 			exit(-22);
 		}
         clReleaseEvent(exeEvt);
-
+        clFinish(queue);
         cl_int result_read = clEnqueueReadBuffer(queue,
                             intermediateBinBuffer,
                             CL_TRUE,
@@ -235,7 +235,7 @@ int main(int argc, char** argv) {
                             NULL,
                             NULL);
 
-        printf("RESULT      %2d %d", result_read, CL_SUCCESS);
+//        printf("RESULT      %zd %d", result_read, CL_SUCCESS);
 
         memset(deviceBin,0, BIN_SIZE * sizeof(cl_int));
 
