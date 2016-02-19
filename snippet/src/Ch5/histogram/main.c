@@ -85,12 +85,11 @@ int main(int argc, char** argv) {
     cl_int  error;
     size_t globalThreads;
     size_t localThreads;
+    int w = width;
+    int h = height;
 
     /* Perform initialization of data structures & data */
     {
-        int w = width;
-        int h = height;
-
         // ensure a minimum size of 32-KB is present to work this.
         w = (w / BIN_SIZE ? w / BIN_SIZE: 1) * BIN_SIZE;
         h = (h / GROUP_SIZE ? h / GROUP_SIZE : 1) * GROUP_SIZE;
@@ -191,6 +190,12 @@ int main(int argc, char** argv) {
 
         cl_kernel kernel = clCreateKernel(program, "histogram256", &error);
 
+
+        printf("START DEBUGING DATA :  \n");
+        for(int i = 0 ; i < width * height; i++)
+            printf("%d \n", data[i]);
+        printf("STOP DEBUGGING DATA : \n");
+
         inputDataBuffer = clCreateBuffer(context,
                                  CL_MEM_READ_ONLY|CL_MEM_COPY_HOST_PTR,
                                  width * height * sizeof(cl_uint),
@@ -257,6 +262,11 @@ int main(int argc, char** argv) {
             printf("Failed");
         }
 
+        printf("DATAAAAAAAA %d %d %d %d %d\n", sizeof(data[0]), sizeof(data), sizeof(cl_uint*), w , h);
+
+//        for(int i = 0 ; i < 256 * 128; i++){
+//            printf("%d %d", i , data[i]);
+//        }
 
         /* Clean up */
         //for(cl_int i = 0; i < numOfKernels; i++) { clReleaseKernel(kernels[i]); }
