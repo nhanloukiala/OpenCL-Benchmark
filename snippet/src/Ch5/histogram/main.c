@@ -224,12 +224,13 @@ int main(int argc, char** argv) {
 			exit(-22);
 		}
         clReleaseEvent(exeEvt);
-        clFinish(queue);
+
         cl_int result_read = clEnqueueReadBuffer(queue,
                             intermediateBinBuffer,
                             CL_TRUE,
                             0,
-                            subHistogramCount * BIN_SIZE * sizeof(cl_uint),
+//                            subHistogramCount * BIN_SIZE * sizeof(cl_uint),
+                                                 10,
                             intermediateBins,
                             0,
                             NULL,
