@@ -208,6 +208,11 @@ int main(int argc, char** argv) {
                                          NULL,
                                          &error);
 
+        if(error != CL_SUCCESS) {
+            printf("Kernel execution failure!\n");
+            exit(-22);
+        }
+
         clSetKernelArg(kernel, 0, sizeof(cl_mem),(void*)&inputDataBuffer);
         // the importance of uchar being that its unsigned char i.e. value range[0x00..0xff]
         clSetKernelArg(kernel, 1, BIN_SIZE * GROUP_SIZE * sizeof(cl_uchar), NULL); // bounded by LOCAL MEM SIZE in GPU
@@ -229,14 +234,13 @@ int main(int argc, char** argv) {
                             intermediateBinBuffer,
                             CL_TRUE,
                             0,
-//                            subHistogramCount * BIN_SIZE * sizeof(cl_uint),
-                                                 10,
+                            subHistogramCount * BIN_SIZE * sizeof(cl_uint),
                             intermediateBins,
                             0,
                             NULL,
                             NULL);
 
-//        printf("RESULT      %zd %d", result_read, CL_SUCCESS);
+        printf("RESULT      %zd %d", result_read, CL_SUCCESS);
 
         memset(deviceBin,0, BIN_SIZE * sizeof(cl_int));
 
