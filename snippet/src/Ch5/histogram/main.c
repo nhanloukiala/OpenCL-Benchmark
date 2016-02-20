@@ -188,7 +188,7 @@ int main(int argc, char** argv) {
 //        queue = clCreateCommandQueueWithProperties(context, device, 0, &error);
         queue = clCreateCommandQueue(context, device, 0, &error);
 
-        cl_kernel kernel = clCreateKernel(program, "histogram256_1threadPerBlock", &error);
+        cl_kernel kernel = clCreateKernel(program, "histogram256", &error);
 
 
 //        printf("START DEBUGING DATA :  \n");
@@ -276,7 +276,7 @@ int main(int argc, char** argv) {
 //        }
 
         /* Clean up */
-        //for(cl_int i = 0; i < numOfKernels; i++) { clReleaseKernel(kernels[i]); }
+//        for(cl_int i = 0; i < numOfKernels; i++) { clReleaseKernel(kernels[i]); }
         for(i=0; i< NUMBER_OF_FILES; i++) { free(buffer[i]); }
         clReleaseProgram(program);
         clReleaseContext(context);
