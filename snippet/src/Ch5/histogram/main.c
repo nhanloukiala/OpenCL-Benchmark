@@ -240,7 +240,7 @@ int main(int argc, char** argv) {
                             NULL,
                             NULL);
 
-        printf("RESULT      %zd %d", result_read, CL_SUCCESS);
+        printf("RESULT      %d %d", result_read, CL_SUCCESS);
 
         memset(deviceBin,0, BIN_SIZE * sizeof(cl_int));
 
