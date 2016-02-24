@@ -133,11 +133,19 @@ int main(int argc, char** argv) {
         perror("Unable to find any OpenCL platforms");
         exit(1);
     }
+
+
+
     // Search for a CPU/GPU device through the installed platforms
     // Build a OpenCL program and do not run it.
     for(cl_int i = 0; i < numOfPlatforms; i++ ) {
         // Get the GPU device
         error = clGetDeviceIDs(platforms[i], CL_DEVICE_TYPE_GPU, 1, &device, NULL);
+
+        cl_ulong size;
+        clGetDeviceInfo(device, CL_DEVICE_LOCAL_MEM_SIZE, sizeof(cl_ulong), &size, 0);
+
+        printf("LOCAL MEM SIZE %d ", size);
 
         if(error != CL_SUCCESS) {
             perror("Can't locate any OpenCL compliant device");
