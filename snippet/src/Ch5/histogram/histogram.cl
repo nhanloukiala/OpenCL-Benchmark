@@ -20,21 +20,22 @@ void histogram256(__global const uint4* data,
     size_t groupId = get_group_id(0);
     size_t groupSize = get_local_size(0);
 
-    for(int i = 0; i < BIN_SIZE; ++i) {
-        binResult[groupId * BIN_SIZE + i] = 100;
-    }
 
-//     This is a form of the optimized version of the same program that 
+
+//     This is a form of the optimized version of the same program that
 //     makes use of the memory banks in the device (works only for GPUs)
 //     and was meant to help reduce bank conflicts because of the presence
 //     of 'sharedArray' which we use to read from/write to.
-// 
-//    int offSet1 = localId & 31;
-//    int offSet2 = 4 * offSet1;      //which element to access in one bank.
-//    int bankNumber = localId >> 5;     //bank number
-//
-////    initialize shared array to zero via assignment of (int)(0) to uchar4(0)
-//	__local uchar4 * input = (__local uchar4*)sharedArray;
+
+    int offSet1 = localId & 31;
+    int offSet2 = 4 * offSet1;      //which element to access in one bank.
+    int bankNumber = localId >> 5;     //bank number
+
+//    initialize shared array to zero via assignment of (int)(0) to uchar4(0)
+	__local uchar4 * input = (__local uchar4*)sharedArray;
+    for(int i = 0; i < BIN_SIZE; ++i) {
+        binResult[groupId * BIN_SIZE + i] = 100;
+    }
 //
 ////
 ////     memset's the local array of 32-kb to 0
