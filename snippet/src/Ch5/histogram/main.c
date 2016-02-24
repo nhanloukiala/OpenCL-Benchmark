@@ -14,7 +14,7 @@
 #endif
 
 #define BIN_SIZE 256
-#define GROUP_SIZE 128
+#define GROUP_SIZE 64
 
 void
 calculateHostBin(int width, int height, cl_uint* hostBin, cl_uint* data) {
@@ -185,7 +185,6 @@ int main(int argc, char** argv) {
                                                                     localThreads,
                                                                     subHistogramCount);
 
-//        queue = clCreateCommandQueueWithProperties(context, device, 0, &error);
         queue = clCreateCommandQueue(context, device, 0, &error);
 
         cl_kernel kernel = clCreateKernel(program, "histogram256", &error);
