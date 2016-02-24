@@ -45,9 +45,9 @@ void histogram256(__global const uint4* data,
 ////     i = 63, input[8064..8191] = 0
 ////     but since input is uchar4 hence its 32-KB
 ////
-    for(int i = 0; i < 32; ++i){
-        input[i] = 0;
-    }
+//    for(int i = 0; i < 32; ++i){
+//        input[i] = 0;
+//    }
 
 //    barrier(CLK_LOCAL_MEM_FENCE);
 
