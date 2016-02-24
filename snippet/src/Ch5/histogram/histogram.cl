@@ -55,7 +55,7 @@ result += sharedArray[i * 128 + j];
 }
 binResult[groupId * BIN_SIZE + i] = result;
 }
-}
+
 
 //
 //
