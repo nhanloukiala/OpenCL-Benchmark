@@ -57,7 +57,6 @@ for(int i = 0; i < 64; i++)
 {
 uint4 value =  data[groupId * groupSize * BIN_SIZE/4 + i * groupSize + localId];
 
-
 //        value is a uint4 - vector of 4 'unsigned int'
 //        and this loop walks through the entire 32-KB of locally shared
 //        data and populates the histogram.
@@ -69,7 +68,7 @@ sharedArray[value.s0 * 32 + offSet2 + bankNumber]++;
 sharedArray[value.s1 * 32 + offSet2 + bankNumber]++;
 sharedArray[value.s2 * 32 + offSet2 + bankNumber]++;
 sharedArray[value.s3 * 32 + offSet2 + bankNumber]++;
-//something = value;
+something = value;
 }
 barrier(CLK_LOCAL_MEM_FENCE);
 
@@ -78,7 +77,7 @@ uint result = 0;
 for(int j = 0; j < 64; ++j)  {
 result += sharedArray[i * 64 + j];
 }
-binResult[groupId * BIN_SIZE + i] = something.s0;
+binResult[groupId * BIN_SIZE + i] = something.s0 * 32 + offSet2 + bankNumber;
 }
 
 
