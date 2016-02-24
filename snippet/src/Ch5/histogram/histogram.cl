@@ -43,35 +43,11 @@ int bankNumber = localId >> 5;     //bank number
 //     but since input is uchar4 hence its 32-KB
 //
 for(int i = 0; i < 64; ++i)
-sharedArray[groupSize * i] = 0;
+sharedArray[i] = 0;
 
 barrier(CLK_LOCAL_MEM_FENCE);
 
 
-//    calculate thread-histograms
-//	uint4 value = data[groupId * groupSize *64  + localId];
-for(int i = 0; i < 64; i++)
-{
-uint4 value =  data[groupId * groupSize * BIN_SIZE/4 + i * groupSize + localId];
-
-
-//        value is a uint4 - vector of 4 'unsigned int'
-//        and this loop walks through the entire 32-KB of locally shared
-//        data and populates the histogram.
-//
-//        Note: one possible issue is the fact that bank conflicts can occur
-//              when any of computations below reference the same memory bank.
-
-sharedArray[value.s0 * 128 + offSet2 + bankNumber]++;
-sharedArray[value.s1 * 128 + offSet2 + bankNumber]++;
-sharedArray[value.s2 * 128 + offSet2 + bankNumber]++;
-sharedArray[value.s3 * 128 + offSet2 + bankNumber]++;
-}
-barrier(CLK_LOCAL_MEM_FENCE);
-
-//    merge all thread-histograms into block-histogram
-
-if(localId == 0) {
 for(int i = 0; i < BIN_SIZE; ++i) {
 uint result = 0;
 for(int j = 0; j < 128; ++j)  {
@@ -80,6 +56,41 @@ result += sharedArray[i * 128 + j];
 binResult[groupId * BIN_SIZE + i] = result;
 }
 }
+
+//
+//
+////    calculate thread-histograms
+////	uint4 value = data[groupId * groupSize *64  + localId];
+//for(int i = 0; i < 64; i++)
+//{
+//uint4 value =  data[groupId * groupSize * BIN_SIZE/4 + i * groupSize + localId];
+//
+//
+////        value is a uint4 - vector of 4 'unsigned int'
+////        and this loop walks through the entire 32-KB of locally shared
+////        data and populates the histogram.
+////
+////        Note: one possible issue is the fact that bank conflicts can occur
+////              when any of computations below reference the same memory bank.
+//
+//sharedArray[value.s0 * 128 + offSet2 + bankNumber]++;
+//sharedArray[value.s1 * 128 + offSet2 + bankNumber]++;
+//sharedArray[value.s2 * 128 + offSet2 + bankNumber]++;
+//sharedArray[value.s3 * 128 + offSet2 + bankNumber]++;
+//}
+//barrier(CLK_LOCAL_MEM_FENCE);
+//
+////    merge all thread-histograms into block-histogram
+//
+//if(localId == 0) {
+//for(int i = 0; i < BIN_SIZE; ++i) {
+//uint result = 0;
+//for(int j = 0; j < 128; ++j)  {
+//result += sharedArray[i * 128 + j];
+//}
+//binResult[groupId * BIN_SIZE + i] = result;
+//}
+//}
 }
 
 // only 1 thread executing a 256 block
