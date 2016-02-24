@@ -32,7 +32,7 @@ void histogram256(__global const uint4* data,
     int bankNumber = localId >> 5;     //bank number
 
 //    initialize shared array to zero via assignment of (int)(0) to uchar4(0)
-	__local uchar4* input = (__local uchar4*)sharedArray;
+//	__local uchar4* input = (__local uchar4*)sharedArray;
 
 //
 ////
@@ -50,6 +50,7 @@ void histogram256(__global const uint4* data,
 //    }
 //    input[1] = 0;
 //    barrier(CLK_LOCAL_MEM_FENCE);
+    sharedArray[1] = 0;
 
     for(int i = 0; i < BIN_SIZE / 4; ++i) {
         binResult[groupId * BIN_SIZE + 4*i] = localId;
