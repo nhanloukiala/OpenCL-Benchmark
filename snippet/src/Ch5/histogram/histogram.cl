@@ -26,7 +26,7 @@ size_t groupSize = get_local_size(0);
 //     of 'sharedArray' which we use to read from/write to.
 //
 int offSet1 = localId & 31;
-int offSet2 = 4 * offSet1;      //which element to access in one bank.
+int offSet2 = 2 * offSet1;      //which element to access in one bank.
 int bankNumber = localId >> 5;     //bank number
 
 //    initialize shared array to zero via assignment of (int)(0) to uchar4(0)
@@ -75,10 +75,7 @@ barrier(CLK_LOCAL_MEM_FENCE);
 
 for(int i = 0; i < BIN_SIZE; ++i) {
 uint result = 0;
-for(int j = 0; j < 64; ++j)  {
-result += sharedArray[i * 64 + j];
-}
-binResult[groupId * BIN_SIZE + i] = sharedArray[something.s3 * 32 + offSet2 + bankNumber];
+binResult[groupId * BIN_SIZE + i] = sharedArray[something.s3 * 64 + offSet2 + bankNumber];
 }
 
 
