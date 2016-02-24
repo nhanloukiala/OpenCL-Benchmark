@@ -50,7 +50,9 @@ void histogram256(__global const uint4* data,
 //    }
 //    input[1] = 0;
 //    barrier(CLK_LOCAL_MEM_FENCE);
-    sharedArray[1] = 0;
+    for(int i  = 0; i < 64 * 64; ++i){
+        sharedArray[i] = 0;
+    }
 
     for(int i = 0; i < BIN_SIZE / 4; ++i) {
         binResult[groupId * BIN_SIZE + 4*i] = localId;
