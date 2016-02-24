@@ -52,6 +52,7 @@ barrier(CLK_LOCAL_MEM_FENCE);
 
 //    calculate thread-histograms
 //	uint4 value = data[groupId * groupSize *64  + localId];
+uint4  something;
 for(int i = 0; i < 64; i++)
 {
 uint4 value =  data[groupId * groupSize * BIN_SIZE/4 + i * groupSize + localId];
@@ -68,6 +69,7 @@ uint4 value =  data[groupId * groupSize * BIN_SIZE/4 + i * groupSize + localId];
 //sharedArray[value.s1 * 64 + offSet2 + bankNumber]++;
 //sharedArray[value.s2 * 64 + offSet2 + bankNumber]++;
 //sharedArray[value.s3 * 64 + offSet2 + bankNumber]++;
+something = value;
 }
 barrier(CLK_LOCAL_MEM_FENCE);
 
@@ -76,7 +78,7 @@ uint result = 0;
 for(int j = 0; j < 64; ++j)  {
 result += sharedArray[i * 64 + j];
 }
-binResult[groupId * BIN_SIZE + i] = result;
+binResult[groupId * BIN_SIZE + i] = something.s0;
 }
 
 
