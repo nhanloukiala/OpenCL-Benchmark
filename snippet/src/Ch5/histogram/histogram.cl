@@ -2,7 +2,7 @@
 #pragma OPENCL EXTENSION cl_khr_byte_addressable_store : enable
 #pragma OPENCL EXTENSION cl_khr_global_int32_base_atomics : enable
 
-#define BIN_SIZE 256
+#define BIN_SIZE 64
 
 /**
  * @param   data - input data pointer
@@ -43,7 +43,7 @@ int bankNumber = localId >> 5;     //bank number
 //     but since input is uchar4 hence its 32-KB
 //
 for(int i = 0; i < 64; ++i)
-sharedArray[groupSize * i + localId] = 0;
+sharedArray[groupSize * i] = 0;
 
 barrier(CLK_LOCAL_MEM_FENCE);
 
