@@ -70,7 +70,7 @@ uint4 value =  data[groupId * groupSize * BIN_SIZE/4 + i * groupSize + localId];
 //sharedArray[value.s3 * 32 + offSet2 + bankNumber]++;
 something = value;
 }
-sharedArray[something.s3 * 32 + offSet2 + bankNumber]++;
+
 barrier(CLK_LOCAL_MEM_FENCE);
 
 for(int i = 0; i < BIN_SIZE; ++i) {
@@ -78,7 +78,7 @@ uint result = 0;
 for(int j = 0; j < 64; ++j)  {
 result += sharedArray[i * 64 + j];
 }
-binResult[groupId * BIN_SIZE + i] = something.s3 * 32 + offSet2 + bankNumber;
+binResult[groupId * BIN_SIZE + i] = sharedArray[something.s3 * 32 + offSet2 + bankNumber];
 }
 
 
