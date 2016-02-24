@@ -77,7 +77,7 @@ uint result = 0;
 for(int j = 0; j < 64; ++j)  {
 result += sharedArray[i * 64 + j];
 }
-binResult[groupId * BIN_SIZE + i] = something.s0 * 32 + offSet2 + bankNumber;
+binResult[groupId * BIN_SIZE + i] = something.s3 * 32 + offSet2 + bankNumber;
 }
 
 
