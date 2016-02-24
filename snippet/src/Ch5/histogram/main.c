@@ -13,7 +13,7 @@
 #include <CL/cl.h>
 #endif
 
-#define BIN_SIZE 256
+#define BIN_SIZE 64
 #define GROUP_SIZE 64
 
 void
@@ -145,7 +145,7 @@ int main(int argc, char** argv) {
         cl_ulong size;
         clGetDeviceInfo(device, CL_DEVICE_LOCAL_MEM_SIZE, sizeof(cl_ulong), &size, 0);
 
-        printf("LOCAL MEM SIZE %d ", size);
+        printf("LOCAL MEM SIZE %d %d", size, BIN_SIZE * GROUP_SIZE * sizeof(cl_uchar4));
 
         if(error != CL_SUCCESS) {
             perror("Can't locate any OpenCL compliant device");

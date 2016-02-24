@@ -2,7 +2,7 @@
 #pragma OPENCL EXTENSION cl_khr_byte_addressable_store : enable
 #pragma OPENCL EXTENSION cl_khr_global_int32_base_atomics : enable
 
-#define BIN_SIZE 256
+#define BIN_SIZE 64
 
 /**
  * @param   data - input data pointer
