@@ -42,16 +42,18 @@ int bankNumber = localId >> 5;     //bank number
 //     i = 63, input[8064..8191] = 0
 //     but since input is uchar4 hence its 32-KB
 //
-for(int i = 0; i < 64; ++i)
-sharedArray[i] = 0;
+for(int j = 0 ; j < 64 ; ++j){
+    for(int i = 0; i < 64; ++i)
+        sharedArray[i * 64 + j] = 0;
+}
 
 barrier(CLK_LOCAL_MEM_FENCE);
 
 
 for(int i = 0; i < BIN_SIZE; ++i) {
 uint result = 0;
-for(int j = 0; j < 128; ++j)  {
-result += sharedArray[i * 128 + j];
+for(int j = 0; j < 64; ++j)  {
+result += sharedArray[i * 64 + j];
 }
 binResult[groupId * BIN_SIZE + i] = result;
 }
