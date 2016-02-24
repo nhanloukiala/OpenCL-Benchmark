@@ -65,11 +65,11 @@ uint4 value =  data[groupId * groupSize * BIN_SIZE/4 + i * groupSize + localId];
 //        Note: one possible issue is the fact that bank conflicts can occur
 //              when any of computations below reference the same memory bank.
 
-//sharedArray[value.s0 * 64 + offSet2 + bankNumber]++;
-//sharedArray[value.s1 * 64 + offSet2 + bankNumber]++;
-//sharedArray[value.s2 * 64 + offSet2 + bankNumber]++;
-//sharedArray[value.s3 * 64 + offSet2 + bankNumber]++;
-something = value;
+sharedArray[value.s0 * 32 + offSet2 + bankNumber]++;
+sharedArray[value.s1 * 32 + offSet2 + bankNumber]++;
+sharedArray[value.s2 * 32 + offSet2 + bankNumber]++;
+sharedArray[value.s3 * 32 + offSet2 + bankNumber]++;
+//something = value;
 }
 barrier(CLK_LOCAL_MEM_FENCE);
 
