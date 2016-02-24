@@ -75,7 +75,7 @@ barrier(CLK_LOCAL_MEM_FENCE);
 
 for(int i = 0; i < BIN_SIZE; ++i) {
 uint result = 0;
-binResult[groupId * BIN_SIZE + i] = something.s3 * 32 + offSet2 + bankNumber;
+binResult[groupId * BIN_SIZE + i] = something.s3;
 }
 
 
