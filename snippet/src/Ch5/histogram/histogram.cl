@@ -48,7 +48,7 @@ void histogram256(__global const uint4* data,
 //    for(int i = 0; i < 32; ++i){
 //        input[i] = 0;
 //    }
-    input[1] = 0;
+//    input[1] = 0;
 //    barrier(CLK_LOCAL_MEM_FENCE);
 
     for(int i = 0; i < BIN_SIZE / 4; ++i) {
