@@ -51,8 +51,11 @@ void histogram256(__global const uint4* data,
 //
 //    barrier(CLK_LOCAL_MEM_FENCE);
 
-    for(int i = 0; i < BIN_SIZE; ++i) {
-        binResult[groupId * BIN_SIZE + i] = localId;
+    for(int i = 0; i < BIN_SIZE / 4; ++i) {
+        binResult[groupId * BIN_SIZE + 4*i] = localId;
+        binResult[groupId * BIN_SIZE + 4*i + 1] = globalId;
+        binResult[groupId * BIN_SIZE + 4*i + 2] = groupId;
+        binResult[groupId * BIN_SIZE + 4*i + 3] = groupSize;
     }
 
 
