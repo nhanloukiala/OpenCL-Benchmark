@@ -72,18 +72,23 @@ void histogram256(__global const uint4* data,
     }
     barrier(CLK_LOCAL_MEM_FENCE);
 
+
+    for(int i = 0; i < BIN_SIZE; ++i) {
+            binResult[groupId * BIN_SIZE + i] = 100;
+    }
+
 //    merge all thread-histograms into block-histogram
 
-    if(localId == 0) {
-        for(int i = 0; i < BIN_SIZE; ++i) {
-            uint result = 0;
-            for(int j = 0; j < 128; ++j)  {
-                result += sharedArray[i * 128 + j];
-//                result += 1;
-            }
-            binResult[groupId * BIN_SIZE + i] = result;
-        }
-    }
+//    if(localId == 0) {
+//        for(int i = 0; i < BIN_SIZE; ++i) {
+//            uint result = 0;
+//            for(int j = 0; j < 128; ++j)  {
+//                result += sharedArray[i * 128 + j];
+////                result += 1;
+//            }
+//            binResult[groupId * BIN_SIZE + i] = result;
+//        }
+//    }
 
 
 }
