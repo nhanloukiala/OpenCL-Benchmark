@@ -4,11 +4,7 @@
 #include <alloca.h>
 #include <math.h>
 
-#ifdef APPLE
 #include <OpenCL/cl.h>
-#else
-#include <CL/cl.h>
-#endif
 
 //#define DATA_SIZE 64      // for test runs,
 #define DATA_SIZE 1048576 // for standard runs,
@@ -250,24 +246,30 @@ int main(int argc, char** argv) {
                 size_t globalThreads[2];
                 globalThreads[0]=1024;
                 globalThreads[1]=1024;
+
                 size_t localThreads[2];
+//				localThreads = 64 * 2;
                 localThreads[0] = 64;
                 localThreads[1] = 2;
-	
+				printf("HERE 0");
                 cl_event evt;
 	            error = clEnqueueNDRangeKernel(cQ, 
                                                kernels[j],
                                                2,
                                                0,
                                                globalThreads,
-                                               localThreads,
+                                               NULL,
                                                0, 
                                                NULL, &evt);
+				printf("HERE 1");
                 clWaitForEvents(1, &evt);
-	            if (error != CL_SUCCESS) { 
+				printf("HERE 2");
+	            if (error != CL_SUCCESS) {
+					printf("error %d" , error);
 	                perror("Unable to enqueue task to command-queue");
 	                exit(1);
 	            }
+				printf("HERE 3");
                 clReleaseEvent(evt);
 	            printf("\t=> Task has been enqueued successfully!\n");
 	
