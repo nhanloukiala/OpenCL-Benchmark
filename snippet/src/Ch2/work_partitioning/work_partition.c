@@ -4,7 +4,7 @@
 #include <alloca.h>
 #include <math.h>
 
-#include <OpenCL/cl.h>
+#include <CL/cl.h>
 
 //#define DATA_SIZE 64      // for test runs,
 #define DATA_SIZE 1048576 // for standard runs,
