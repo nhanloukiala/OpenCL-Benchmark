@@ -17,6 +17,6 @@ __kernel void copy2Dfloat4(__global DATA_TYPE *A, __global DATA_TYPE *C)
     int t = get_group_id(0);
     int w = get_local_size(0);
     // its like a vector load/store of 4 elements
-    C(x,y) = z;
+    C(x,y) = t;
 }
 
