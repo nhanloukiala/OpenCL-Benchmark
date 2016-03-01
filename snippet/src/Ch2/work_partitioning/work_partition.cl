@@ -13,9 +13,8 @@ __kernel void copy2Dfloat4(__global DATA_TYPE *A, __global DATA_TYPE *C)
 {
     int x = get_global_id(0);
     int y = get_global_id(1);
-    int z = get_local_id(2);
-    int z1 = get_local_id(1);
-    int t = get_group_id(1);
+    int z = get_num_groups(0);
+    int t = get_group_id(0);
     // its like a vector load/store of 4 elements
     C(x,y) = z;
 }

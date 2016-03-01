@@ -4,7 +4,7 @@
 #include <alloca.h>
 #include <math.h>
 
-#include <CL/cl.h>
+#include <OpenCL/cl.h>
 
 //#define DATA_SIZE 64      // for test runs,
 #define DATA_SIZE 1048576 // for standard runs,
@@ -25,7 +25,7 @@ int valuesOK(float* to, float* from, size_t length) {
 #ifdef DEBUG
     printf("Checking data of size: %lu\n", length);
 #endif
-    for(int i = 0; i < length; ++i) {
+    for(int i = 0; i < length / 1024; ++i) {
 #ifdef DEBUG
         printf("to:%f, from:%f\n", to[i] ,from[i]);
 #endif
