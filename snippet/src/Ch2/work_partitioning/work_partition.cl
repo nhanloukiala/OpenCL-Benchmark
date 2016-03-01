@@ -20,6 +20,6 @@ __kernel void copy2Dfloat4(__global DATA_TYPE *A, __global DATA_TYPE *C)
     int result = 0;
     if(x == z + t * w + m)
         result = 1;
-    C(x,y) = t;
+    C(x,y) = result;
 }
 
