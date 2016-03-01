@@ -25,7 +25,7 @@ int valuesOK(float* to, float* from, size_t length) {
 #ifdef DEBUG
     printf("Checking data of size: %lu\n", length);
 #endif
-    for(int i = 0; i < length / 1024; ++i) {
+    for(int i = 0; i < length; ++i) {
 #ifdef DEBUG
         printf("to:%f, from:%f\n", to[i] ,from[i]);
 #endif
