@@ -8,7 +8,7 @@ __kernel void SobelDetector(__global uchar4* input, __global uchar4* output) {
 	float4 Gx = (float4)(0);
 	float4 Gy = (float4)(0);
 
-    // Given that we know the (x,y) coordinates of the pixel we're 
+    // Given that we know the (x,y) coordinates of the pixel we're
     // looking at, its natural to use (x,y) to look at it's neighbouring pixels
     // Convince yourself, that the indexing operation below is doing exactly that
 
@@ -28,7 +28,7 @@ __kernel void SobelDetector(__global uchar4* input, __global uchar4* output) {
 		float4 i12 = convert_float4(input[x + (y + 1) * width]);
 		float4 i22 = convert_float4(input[(x + 1) + (y + 1) * width]);
 
-        // To understand why the masks are applied this way, look at 
+        // To understand why the masks are applied this way, look at
         // the mask for Gx and Gy which are respectively equal to the matrices:
         // { {-1, 0, 1}, { {-1,-2,-1},
         //   {-2, 0, 2},   { 0, 0, 0},

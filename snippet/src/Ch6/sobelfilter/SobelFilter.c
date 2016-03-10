@@ -68,7 +68,6 @@ void goldenReferenceCPU(int width,
                 + kernelx[2][1] * *(ptr + i + w)
                 + kernelx[2][2] * *(ptr + i + 4 + w);
 
-
             gy =  kernely[0][0] * *(ptr + i - 4 - w)
                 + kernely[0][1] * *(ptr + i - w)
                 + kernely[0][2] * *(ptr + i + 4 - w)
@@ -177,6 +176,7 @@ decipherEvent(cl_event* event) {
 }
 
 int main(int argc, char** argv) {
+    printf("HERE5");
     /* OpenCL 1.1 data structures */
     cl_platform_id* platforms;
     cl_program program;
@@ -184,7 +184,7 @@ int main(int argc, char** argv) {
     cl_context context;
     cl_command_queue queue;
     cl_mem inputImageBuffer;
-    cl_mem outputImageBuffer; 
+    cl_mem outputImageBuffer;
 
     /* OpenCL 1.1 scalar data types */
     cl_uint numOfPlatforms;
@@ -199,6 +199,8 @@ int main(int argc, char** argv) {
     size_t sizeY = 1;
     cl_uchar4* inputImageData = NULL;
     cl_uchar4* outputImageData = NULL;
+    printf("HERE4");
+
 
 	{
 	    // load input bitmap image 
@@ -218,31 +220,35 @@ int main(int argc, char** argv) {
 	
 	    // allocate memory for input & output image data 
 	    inputImageData  = (cl_uchar4*)malloc(width * height * sizeof(cl_uchar4));
+        pixelData = (uchar4*)malloc(width * height * sizeof(uchar4));
 	
 	    // allocate memory for output image data 
 	    outputImageData = (cl_uchar4*)malloc(width * height * sizeof(cl_uchar4));
+
+        printf("%d %d \n", width, height);
 	
 	    // initializa the Image data to NULL
 	    memset(outputImageData, 0, width * height * pixelSize);
-	
-	    // get the pointer to pixel data 
+
+	    // get the pointer to pixel data
 	    memcpy(pixelData, getPixels(&inputBitMap), width * height * pixelSize);
-	    if(pixelData == NULL)
-	    {
-	        printf("Failed to read pixel Data!\n");
-	        return FAILURE;
-	    }
-	
-	    // Copy pixel data into inputImageData 
+
+//	    if(pixelData == NULL)
+//	    {
+//	        printf("Failed to read pixel Data!\n");
+//	        return FAILURE;
+//	    }
+
+	    // Copy pixel data into inputImageData
 	    memcpy(inputImageData, pixelData, width * height * pixelSize);
-	
+
 	    // allocate memory for verification output
 	    output = (cl_uchar*)malloc(width * height * pixelSize);
-	
-	    // initialize the data to NULL 
+
+	    // initialize the data to NULL
 	    memset(output, 0, width * height * pixelSize);
     }
-
+    printf("HERE3");
     /*
      Get the number of platforms
      Remember that for each vendor's SDK installed on the computer,
@@ -253,10 +259,10 @@ int main(int argc, char** argv) {
         perror("Unable to find any OpenCL platforms");
         exit(1);
     }
-    
+
     platforms = (cl_platform_id*) alloca(sizeof(cl_platform_id) * numOfPlatforms);
     printf("Number of OpenCL platforms found: %d\n", numOfPlatforms);
-    
+
     error = clGetPlatformIDs(numOfPlatforms, platforms, NULL);
     if(error != CL_SUCCESS) {
         perror("Unable to find any OpenCL platforms");
@@ -278,14 +284,14 @@ int main(int argc, char** argv) {
             perror("Can't create a valid OpenCL context");
             exit(1);
         }
-        
+
         /* Load the two source files into temporary datastores */
         const char *file_names[] = {"sobel_detector.cl"};
         const int NUMBER_OF_FILES = 1;
         char* buffer[NUMBER_OF_FILES];
         size_t sizes[NUMBER_OF_FILES];
         loadProgramSource(file_names, NUMBER_OF_FILES, buffer, sizes);
-        
+
         /* Create the OpenCL program object */
         program = clCreateProgramWithSource(context, NUMBER_OF_FILES, (const char**)buffer, sizes, &error);
 	    if(error != CL_SUCCESS) {
@@ -296,7 +302,7 @@ int main(int argc, char** argv) {
         char *program_log;
         const char options[] = "";
         size_t log_size;
-
+        printf("HERE2");
         error = clBuildProgram(program, 1, &device, options, NULL, NULL);
 	    if(error != CL_SUCCESS) {
             // If there's an error whilst building the program, dump the log
@@ -309,11 +315,11 @@ int main(int argc, char** argv) {
             free(program_log);
             exit(1);
 	    }
-        
+
         queue = clCreateCommandQueue(context, device, 0, &error);
 
         cl_kernel kernel = clCreateKernel(program, "SobelDetector", &error);
-
+        printf("HERE");
         inputImageBuffer = clCreateBuffer(context,
                                           CL_MEM_READ_ONLY|CL_MEM_COPY_HOST_PTR,
                                           width * height * pixelSize,
@@ -328,11 +334,11 @@ int main(int argc, char** argv) {
 
         clSetKernelArg(kernel, 0, sizeof(cl_mem),(void*)&inputImageBuffer);
         clSetKernelArg(kernel, 1, sizeof(cl_mem),(void*)&outputImageBuffer);
-         
+
         size_t globalThreads[] = {width, height};
         size_t localThreads[]  = {sizeX, sizeY};
-
-		cl_event exeEvt; 
+        printf("HERE1");
+		cl_event exeEvt;
 		error = clEnqueueNDRangeKernel(queue,
 		                               kernel,
 		                               2,
@@ -341,9 +347,9 @@ int main(int argc, char** argv) {
 		if(error != CL_SUCCESS) {
 			printf("Kernel execution failure!\n");
 			exit(-22);
-		}	
+		}
         clReleaseEvent(exeEvt);
- 
+
         clEnqueueReadBuffer(queue,
                             outputImageBuffer,
                             CL_TRUE,
@@ -354,7 +360,7 @@ int main(int argc, char** argv) {
                             NULL,
                             NULL);
         writeImage(width, height, pixelSize, pixelData, outputImageData, &inputBitMap, "OutputImage.bmp");
-        
+
         /* Clean up */
         for(i=0; i< NUMBER_OF_FILES; i++) { free(buffer[i]); }
         clReleaseProgram(program);
@@ -362,7 +368,7 @@ int main(int argc, char** argv) {
         clReleaseMemObject(inputImageBuffer);
         clReleaseMemObject(outputImageBuffer);
     }
-    
+
     free(inputImageData);
     free(outputImageData);
     free(output);
