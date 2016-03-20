@@ -16,8 +16,8 @@
 #include "matrixmultiplication_config.h"
 
 #define GROUP_SIZE 73 // ATI HD 6870x2 has 14 parallel compute units, 1024/14 = 73
-#define WIDTH_G 1024
-#define HEIGHT_G 1024
+#define WIDTH_G 1024*8
+#define HEIGHT_G 1024*8
 
 void loadProgramSource(const char** files,
                        size_t length,
@@ -241,7 +241,8 @@ int main(int argc, char** argv) {
         clGetEventProfilingInfo(exeEvt, CL_PROFILING_COMMAND_END, sizeof(executionEnd), &executionEnd, NULL);
         clReleaseEvent(exeEvt);
 
-        printf("Execution the matrix-matrix multiplication took %lu.%lu s\n", (executionEnd - executionStart)/1000000000, (executionEnd - executionStart)%1000000000);
+//        printf("Execution the matrix-matrix multiplication took %lu.%lu s\n", (executionEnd - executionStart)/1000000000, (executionEnd - executionStart)%1000000000L);
+        printf("Execution the matrix-matrix multiplication took %lu s\n", (executionEnd - executionStart));
  
         clEnqueueReadBuffer(queue,
                             matrixCMemObj,

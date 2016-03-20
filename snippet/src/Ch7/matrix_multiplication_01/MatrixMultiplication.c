@@ -52,7 +52,7 @@ compare(cl_int* gpuMatC, cl_int* matA, cl_int* matB, int heightA, int widthA, in
 
     size_t length = heightA * widthB;
     for(int i =0 ; i < length; ++i) {
-        //printf("cpu[%d] vs gpu[%d]\n", cpuMat[i], gpuMatC[i]);
+        printf("cpu[%d] vs gpu[%d]\n", cpuMat[i], gpuMatC[i]);
         if (cpuMat[i] != gpuMatC[i]) return 0;
     }
     free(cpuMat);
