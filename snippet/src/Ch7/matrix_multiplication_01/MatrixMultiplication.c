@@ -239,8 +239,8 @@ int main(int argc, char** argv) {
         clGetEventProfilingInfo(exeEvt, CL_PROFILING_COMMAND_END, sizeof(executionEnd), &executionEnd, NULL);
         clReleaseEvent(exeEvt);
 
-        printf("Execution the matrix-matrix multiplication took %lu.%lu s\n", (executionEnd - executionStart)/1000000000, (executionEnd - executionStart)%1000000000);
- 
+//        printf("Execution the matrix-matrix multiplication took %lu.%lu s\n", (executionEnd - executionStart)/1000000000, (executionEnd - executionStart)%1000000000);
+        printf("Execution the matrix-matrix multiplication took %lu s\n", (executionEnd - executionStart));
         clEnqueueReadBuffer(queue,
                             matrixCMemObj,
                             CL_TRUE,
