@@ -252,7 +252,7 @@ int main(int argc, char** argv) {
                             0,
                             NULL,
                             NULL);
-       
+
         if (compare(matrixC, matrixA, matrixB, heightA, widthA, widthB))
             printf("Passed!\n");
         else 
