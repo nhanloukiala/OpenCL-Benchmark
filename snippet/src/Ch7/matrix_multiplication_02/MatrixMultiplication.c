@@ -15,9 +15,8 @@
 
 #include "matrixmultiplication_config.h"
 
-#define GROUP_SIZE 73 // ATI HD 6870x2 has 14 parallel compute units, 1024/14 = 73
-#define WIDTH_G 1024*8
-#define HEIGHT_G 1024*8
+#define WIDTH_G 1024
+#define HEIGHT_G 1024
 
 void loadProgramSource(const char** files,
                        size_t length,
@@ -53,7 +52,7 @@ compare(cl_int* gpuMatC, cl_int* matA, cl_int* matB, int heightA, int widthA, in
     size_t length = heightA * widthB;
     for(int i =0 ; i < length; ++i) {
     #ifdef DEBUG
-        //printf("cpu[%d] vs gpu[%d]\n", cpuMat[i], gpuMatC[i]);
+        if(i < 100) printf("cpu[%d] vs gpu[%d]\n", cpuMat[i], gpuMatC[i]);
     #endif
         if (cpuMat[i] != gpuMatC[i]) return 0;
     }
